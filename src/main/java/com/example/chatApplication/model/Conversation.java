@@ -19,11 +19,13 @@ public class Conversation {
     private Date finalMessageDate;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "first_sender_id")  // Name of the foreign key column
+    @JoinColumn(name = "first_sender_id",nullable = false,updatable = false)  // Name of the foreign key column
+
     private User firstSender;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "second_sender_id")  // Name of the foreign key column
+    @JoinColumn(name = "second_sender_id",nullable = false,updatable = false)  // Name of the foreign key column
+
     private User secondSender;
 
 }

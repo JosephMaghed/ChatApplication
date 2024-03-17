@@ -20,13 +20,14 @@ public class Messages {
 
     //Since one sender can send many messages
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "senderId")  // Name of the foreign key column
+    @JoinColumn(name = "senderId",nullable = false,updatable = false)  // Name of the foreign key column
 
     private  User sender;
 
     //Assuming the scenario where one message can be forwarded to many receiver
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "receiverId")  // Name of the foreign key column
+    @JoinColumn(name = "receiverId",nullable = false,updatable = false)  // Name of the foreign key column
+
     private User receiver;
 
     @NotBlank(message = "Date cannot be blank")
