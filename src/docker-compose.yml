@@ -1,0 +1,18 @@
+services:
+  db:
+    container_name: postgres              # Specifies the container name as 'postgres'
+    image: postgres                       # Uses the official PostgreSQL Docker image
+    environment:                          # Sets environment variables for PostgreSQL
+      POSTGRES_USER: amigoscode           # Specifies the PostgreSQL username
+      POSTGRES_PASSWORD: password         # Specifies the PostgreSQL password
+      PGDATA: /data/postgres             # Specifies the data directory
+    volumes:                              # Mounts a volume to persist PostgreSQL data
+      - db:/data/postgres
+    ports:                                # Exposes ports for PostgreSQL
+      - "5332-5432"                       # Maps host port range 5332-5432 to container port 5432
+    networks:                             # Connects the container to a custom network named 'db'
+      - db
+    restart: unless-stopped               # Defines the restart policy for the container
+
+networks:
+  db:                                     # Defines a custom network named 'db'
