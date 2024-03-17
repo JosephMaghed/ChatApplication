@@ -13,20 +13,21 @@ public class Messages {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)//How to generate value
     @Column(nullable = false,updatable = false)
-    private final Long id;
+    private  Long id;
 
     @NotBlank(message = "Cannot send an empty message")
     private  String message;
 
     //Since one sender can send many messages
-    @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "senderId")  // Name of the foreign key column
-    private final UserModel sender;
+
+    private  User sender;
 
     //Assuming the scenario where one message can be forwarded to many receiver
-    @ManyToMany(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "receiverId")  // Name of the foreign key column
-    private UserModel receiver;
+    private User receiver;
 
     @NotBlank(message = "Date cannot be blank")
     private final Date messageDate;

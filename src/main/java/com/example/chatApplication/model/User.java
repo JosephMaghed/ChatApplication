@@ -9,11 +9,11 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="users")
-public class UserModel {
+public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)//How to generate value
     @Column(nullable = false,updatable = false)
-    private final Long id;
+    private  Long id;
     @NotBlank(message = "Name can not be empty")
     private String name;
     @NotBlank(message = "Email must not be empty")
