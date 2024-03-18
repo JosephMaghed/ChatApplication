@@ -3,12 +3,15 @@ package com.example.chatApplication.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Data
 @Entity
 @Table(name="messages")
+@NoArgsConstructor(force = true)
 public class Messages {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)//How to generate value
@@ -27,9 +30,10 @@ public class Messages {
     //Assuming the scenario where one message can be forwarded to many receiver
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "receiverId",nullable = false,updatable = false)  // Name of the foreign key column
-
     private User receiver;
 
-    @NotBlank(message = "Date cannot be blank")
-    private final Date messageDate;
+    @ManyToOne
+    private Conversation conversationId;
+
+    private  LocalDate messageDate;
 }

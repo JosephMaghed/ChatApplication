@@ -5,9 +5,11 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import java.sql.Date;
+import java.time.LocalDate;
+
 @Entity
 @Data
-@Table(name = "conversations")
+@Table(name = "conversation")
 public class Conversation {
 
     @Id
@@ -15,8 +17,8 @@ public class Conversation {
     @Column(nullable = false, updatable = false)
     private Long id;
 
-    @NotBlank(message = "Conversation date cannot be blank")
-    private Date finalMessageDate;
+    //To display conversations by date
+    private LocalDate finalMessageDate;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "first_sender_id",nullable = false,updatable = false)  // Name of the foreign key column
